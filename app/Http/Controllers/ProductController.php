@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -57,7 +56,7 @@ class ProductController extends Controller
             'id_category' => $request->id_category
         ]);
 
-        Product::create($validatedData);
+        Product::create($$validatedData);
         return redirect('/product');
     }
 
