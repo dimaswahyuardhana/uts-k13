@@ -16,8 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data['products'] = Product::with('Category')->get();
-        return view('layouts.product', $data);
+        $data['products'] = Product::with('category')->get();
+        return view('product.create', $data);
     }
 
     /**
@@ -27,8 +27,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $Category = Category::all();
-        return view('product.add',$Category);
+        $data['categories'] = Category::all();
+
+        return view('product.add', $data);
     }
 
     /**
@@ -41,7 +42,8 @@ class ProductController extends Controller
     {
         $validatedData =$request->validate([
             'name_product' => 'required',
-            'image_product' => 'required',
+            // 'image_product' => 'required',
+            // {{  }}
             'description_product' => 'required',
             'price_product' => 'required',
             'id_category' => 'required'

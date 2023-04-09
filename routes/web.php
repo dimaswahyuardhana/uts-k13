@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 /*
 Route::get('/', function () {
     return view('welcome');
-});
+});{{  }}
 */
 
 Route::get('/', function () {
@@ -40,8 +40,8 @@ Route::put('/category/{id_category}', [CategoryController::class, 'update']);
 //untuk delete category
 Route::get('category/{id_category}/delete', [CategoryController::class, 'destroy']);
 
-Route::get('/product', [ProductController::class, 'index']);
 Route::get('/product/add', [ProductController::class, 'create']);
+Route::post('/product', [ProductController::class, 'store']);
 
 Route::get('/cart', [CartController::class, 'index']);
 
