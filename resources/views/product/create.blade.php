@@ -38,10 +38,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $no = 1; ?>
                                     @foreach ($products as $item)
                                     <tr>
                                         <th>
-                                            <?php $no = 1; ?>
                                             {{ $no++ }}
                                         </th>
                                             <td>{{ $item->name_product }}</td>
