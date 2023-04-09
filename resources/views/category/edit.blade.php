@@ -7,7 +7,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                     <li class="breadcrumb-item"><a href="{{ url('/category') }}">Category</a></li>
-                    <li class="breadcrumb-item active">Tambah Data Category</li>
+                    <li class="breadcrumb-item active">Edit Data Category</li>
                 </ol>
             </nav>
         </div>
@@ -17,17 +17,18 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">TAMBAH DATA CATEGORY</h5>
+                            <h5 class="card-title">EDIT DATA CATEGORY</h5>
 
                             <!-- General Form Elements -->
-                            <form method="POST" action="{{ url('/category') }}">
+                            <form method="POST" action="/category/{{ $category->id_category }}">
+                                @method('put')
                                 @csrf
                                 <div class="row mb-3">
                                     <label for="name_category" class="col-sm-2 col-form-label">NAMA CATEGORY</label>
                                     <div class="col-sm-10">
                                         <input type="text"
                                             class="form-control @error('name_category') is-invalid @enderror"
-                                            id="name_category" name="name_category">
+                                            id="name_category" name="name_category" value="{{ $category->name_category }}">
                                         @error('name_category')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
