@@ -22,11 +22,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
+
 Route::get('/', function () {
     return view('dashboard');
 });
+
 Route::get('/category', [CategoryController::class, 'index']);
+
+//untuk add category
 Route::get('/category/add', [CategoryController::class, 'create']);
+Route::post('/category', [CategoryController::class, 'store']);
+
+//untuk edit category
+Route::get('/category/{id_category}/edit', [CategoryController::class, 'edit']);
+Route::put('/category/{id_category}', [CategoryController::class, 'update']);
+
+//untuk delete category
+Route::get('category/{id_category}/delete', [CategoryController::class, 'destroy']);
 
 Route::get('/product', [ProductController::class, 'index']);
 Route::get('/product/add', [ProductController::class, 'create']);
@@ -43,5 +55,3 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::post('/register', [AuthController::class, 'doRegister'])->name('do.register');
 Route::post('/login', [AuthController::class, 'doLogin'])->name('do.login');
-
-

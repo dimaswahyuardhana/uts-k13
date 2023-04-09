@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -14,7 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('category.create');
+        $data['categories'] = Category::all();
+        return view('category.create', $data);
     }
 
     /**
@@ -35,7 +37,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name_category' => 'required|string|min:2|max:50',
+        ]);
+
+        Category::create($validatedData);
+        return redirect('/category');
     }
 
     /**
@@ -57,7 +64,8 @@ class CategoryController extends Controller
      */
     public function edit($id_category)
     {
-        //
+        $data['category'] = Category::find($id_category);
+        return view('category.edit', $data);
     }
 
     /**
@@ -69,7 +77,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'name_category' => 'required|min:2|max:50',
+        ]);
+        Category::where('id_category', $id)->update($validatedData);
+        return redirect('/category');
     }
 
     /**
@@ -78,8 +90,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_category)
     {
-        //
+        Category::destroy($id_category);
+        return redirect('/category');
     }
 }
