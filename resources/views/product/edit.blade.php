@@ -20,9 +20,7 @@
                 <h5 class="card-title">TAMBAH DATA PRODUCT</h5>
 
                 <!-- General Form Elements -->
-                <form action="/product" method="post" enctype="multipart/form-data">
-                  @csrf
-                  @method('post')
+                <form>
                   <div class="row mb-3">
                     <label for="inputText" class="col-sm-2 col-form-label">NAMA PRODUK</label>
                     <div class="col-sm-10">
@@ -34,9 +32,9 @@
                     <div class="col-sm-10">
                       <select class="form-select" aria-label="Default select example">
                         <option selected>== PILIH KATEGORI ==</option>
-                        @foreach ($Category as $kt)
-                        <option value="{{ $kt->id }}">{{$kt->name_category}}</option>
-                    @endforeach
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
                       </select>
                     </div>
                   </div>
