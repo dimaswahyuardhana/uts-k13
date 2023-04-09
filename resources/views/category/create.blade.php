@@ -42,14 +42,11 @@
                                             </th>
                                             <td>{{ $row->name_category }}</td>
                                             <td>
-
                                                 <a href="/category/{{ $row->id_category }}/edit"
                                                     class="btn btn-xs btn-warning">Edit</a>
                                                 <a href="/category/{{ $row->id_category }}/delete"
                                                     class="btn btn-xs btn-danger"
                                                     onclick="return confirm('Are u Sure?');">Delete</a>
-
-                                            </td>
                                             </td>
                                         </tr>
                                     @endforeach
