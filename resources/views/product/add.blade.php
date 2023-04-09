@@ -23,9 +23,9 @@
                             <form action="{{ url('/product') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row mb-3">
-                                    <label for="inputText" class="col-sm-2 col-form-label">NAMA PRODUK</label>
+                                    <label for="name_category" class="col-sm-2 col-form-label">NAMA PRODUK</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="name_product">
                                         <!-- @error('name_category')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -36,7 +36,7 @@
                                 <div class="row mb-3">
                                     <label class="col-sm-2 col-form-label">KATEGORI</label>
                                     <div class="col-sm-10">
-                                        <select class="form-select" aria-label="Default select example">
+                                        <select class="form-select" aria-label="Default select example" name="id_category">
                                             <option selected>== PILIH KATEGORI ==</option>
                                             @foreach ($categories as $kt)
                                                 <option value="{{ $kt->id_category }}">{{ $kt->name_category }}</option>
@@ -47,13 +47,13 @@
                                 <div class="row mb-3">
                                     <label for="inputPassword" class="col-sm-2 col-form-label">DESKRIPSI</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px"></textarea>
+                                        <textarea class="form-control" style="height: 100px" name="description_product"></textarea>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="inputText" class="col-sm-2 col-form-label">HARGA</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="price_product">
                                     </div>
                                 </div>
                                 <div class="row mb-3">

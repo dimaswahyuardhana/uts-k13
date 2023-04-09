@@ -42,21 +42,21 @@ class ProductController extends Controller
     {
         $validatedData =$request->validate([
             'name_product' => 'required',
-            // 'image_product' => 'required',
-            // {{  }}
+            'id_category' => 'required',
             'description_product' => 'required',
             'price_product' => 'required',
-            'id_category' => 'required'
+            // 'image_product' => 'required',
+            // {{  }}
         ]);
-        $image_product = $request->file('image_product')->store('Product', 'public');
-        $insert = Product::create([
+        // $image_product = $request->file('image_product')->store('Product', 'public');
+        Product::create([
             'name_product' => $request->name_product,
-            'image_product' => $image_product,
+            // 'image_product' => $image_product,
             'description_product' => $request->description_product,
             'price_product' => $request->price_product,
             'id_category' => $request->id_category
         ]);
-        
+
         Product::create($validatedData);
         return redirect('/product');
     }
@@ -107,7 +107,7 @@ class ProductController extends Controller
             'price_product' => $request->price_product,
             'id_category' => $request->id_category
         ]);
-    
+
 
         Product::where('id_product', $id)->update($validatedData);
         return redirect('/product');

@@ -38,16 +38,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($products as $item)
                                     <tr>
                                         <th>
                                             <?php $no = 1; ?>
                                             {{ $no++ }}
                                         </th>
-                                        @foreach ($products as $item)
-                                            <td>{{ $item->name_category }}</td>
-                                            <td>{{ $item->category->name_category }}</td>
-                                            <td>{{ $item->description }}</td>
-                                            <td>{{ $item->price }}</td>
+                                            <td>{{ $item->name_product }}</td>
+                                            <td>.</td>
+                                            {{-- <td>{{ $item->category->name_category }}</td> --}}
+                                            <td>{{ $item->description_product }}</td>
+                                            <td>{{ $item->price_product }}</td>
+                                            <td>.</td>
                                             <!-- <td>{{ $item->price }}</td> -->
                                             <td>
                                                 <a href="/product/{{ $item->id_product }}/edit"
@@ -56,8 +58,8 @@
                                                     class="btn btn-xs btn-danger"
                                                     onclick="return confirm('Are u Sure?');">Delete</a>
                                             </td>
+                                        </tr>
                                         @endforeach
-                                    </tr>
                                 </tbody>
                             </table>
                             <!-- End Default Table Example -->
