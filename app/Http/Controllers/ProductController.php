@@ -39,7 +39,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData =$request->validate([
+        $validatedData = $request->validate([
             'name_product' => 'required',
             'id_category' => 'required',
             'description_product' => 'required',
@@ -56,7 +56,7 @@ class ProductController extends Controller
             'id_category' => $request->id_category
         ]);
 
-        Product::create($$validatedData);
+        Product::create($validatedData);
         return redirect('/product');
     }
 
@@ -81,7 +81,7 @@ class ProductController extends Controller
     {
         $data['product'] = Product::find($id_product);
         $Category = Category::all();
-        return view('product.edit', $data,$Category);
+        return view('product.edit', $data, $Category);
     }
 
     /**
@@ -100,7 +100,7 @@ class ProductController extends Controller
             'id_category' => 'required'
         ]);
 
-        $update = Product::where(['id'=> $id])->update([
+        $update = Product::where(['id' => $id])->update([
             'name_product' => $request->name_product,
             'description_product' => $request->description_product,
             'price_product' => $request->price_product,
@@ -120,7 +120,7 @@ class ProductController extends Controller
      */
     public function destroy($id_product)
     {
-       $delete = Product::find($id_product)->delete();
+        $delete = Product::find($id_product)->delete();
         return redirect('produk');
     }
 }
