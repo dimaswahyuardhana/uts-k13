@@ -13,17 +13,21 @@
     </div>
 
     <section class="section">
+        <div class="row">
         @foreach ($product as $item)
-        <div class="card" style="width: 18rem;">
-            <img src="{{ asset('template/assets/img/card.jpg') }}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{ $item->name_product }}</h5>
-              <p class="card-text">{{ $item->description_product }}</p>
-              <p class="card-text">Harga : Rp.{{ $item->price_product }},00</p>
-              <button type="button" class="btn btn-primary">Masukkan Cart</button>
+            <div class="col">
+                <div class="card col" style="width: 18rem;">
+                    <img src="{{ asset('template/assets/img/card.jpg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ $item->name_product }}</h5>
+                      <p class="card-text">{{ $item->description_product }}</p>
+                      <p class="card-text">Harga : Rp.{{ $item->price_product }},00</p>
+                      <button type="button" class="btn btn-primary">Masukkan Cart</button>
+                    </div>
+                </div>
             </div>
+            @endforeach
         </div>
-        @endforeach
 
         <div class="row">
             <div class="col-lg-12">
