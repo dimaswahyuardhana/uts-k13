@@ -45,13 +45,14 @@ class ProductController extends Controller
             'name_product' => 'required',
             'id_category' => 'required',
             'description_product' => 'required',
-            'price_product' => 'required',
+            'price_product' => 'required|numeric',
             'image_product' => 'required|image'
         ], [
             'name_product.required' => 'Nama Produk harus diisi',
-            'id_category.required' => 'Pilih salah Kategori',
+            'id_category.required' => 'Pilih salah 1 Kategori',
             'description_product.required' => 'Deskripsi Produk harus diisi',
             'price_product.required' => 'Harga Produk harus diisi',
+            'price_product.numeric' => 'Harga Produk harus berupa angka',
             'image_product.required' => 'Gambar Produk harus diisi',
             'image_product.image' => 'File Gambar harus dalam bentuk extension image'
         ]);
