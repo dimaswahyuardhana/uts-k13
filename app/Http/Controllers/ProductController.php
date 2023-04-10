@@ -15,8 +15,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data['products'] = Product::with('category')->get();
-        return view('product.create', $data);
+        // $data = Product::with('category')->get();
+        $data=Product::join('categories', 'categories.id_category', '=', 'products.id_category')
+                    ->select('*')
+                    ->get();
+        return view('product.create', compact('data'));
     }
 
     /**
@@ -27,7 +30,6 @@ class ProductController extends Controller
     public function create()
     {
         $data['categories'] = Category::all();
-
         return view('product.add', $data);
     }
 
@@ -44,17 +46,17 @@ class ProductController extends Controller
             'id_category' => 'required',
             'description_product' => 'required',
             'price_product' => 'required',
-            // 'image_product' => 'required',
-            // {{  }}
+            'image_product' => 'required|image',
         ]);
-        // $image_product = $request->file('image_product')->store('Product', 'public');
-        Product::create([
-            'name_product' => $request->name_product,
-            // 'image_product' => $image_product,
-            'description_product' => $request->description_product,
-            'price_product' => $request->price_product,
-            'id_category' => $request->id_category
-        ]);
+        $validatedData['image_product'] = $request->file('image_product')->storeAs('photo_product',$validatedData['name_product'].'.jpg');
+        // $validatedData['gambar_produk'] = $request->file('gambar_produk')->storeAs('fotoProduk',$validatedData['name_product'].'.jpg');
+        // Product::create([
+        //     'name_product' => $request->name_product,
+        //     // 'image_product' => $image_product,
+        //     'description_product' => $request->description_product,
+        //     'price_product' => $request->price_product,
+        //     'id_category' => $request->id_category
+        // ]);
 
         Product::create($validatedData);
         return redirect('/product');

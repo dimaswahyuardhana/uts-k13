@@ -39,17 +39,16 @@
                                 </thead>
                                 <tbody>
                                     <?php $no = 1; ?>
-                                    @foreach ($products as $item)
+                                    @foreach ($data as $item)
                                     <tr>
                                         <th>
                                             {{ $no++ }}
                                         </th>
                                             <td>{{ $item->name_product }}</td>
-                                            {{-- <td>.</td> --}}
-                                            <td>{{ $item->category->name_category }}</td>
+                                            <td>{{ $item->name_category }}</td>
                                             <td>{{ $item->description_product }}</td>
                                             <td>{{ $item->price_product }}</td>
-                                            <td>.</td>
+                                            <td><img class="rounded" src="{{ asset('storage/'.$item->image_product) }}" width = "130" height="200"></td>
                                             <td>
                                                 <a href="/product/{{ $item->id_product }}/edit"
                                                     class="btn btn-xs btn-warning">Edit</a>

@@ -20,17 +20,17 @@
                             <h5 class="card-title">TAMBAH DATA PRODUCT</h5>
 
                             <!-- General Form Elements -->
-                            <form action="{{ url('/product') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ url('/product/adds') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row mb-3">
                                     <label for="name_category" class="col-sm-2 col-form-label">NAMA PRODUK</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="name_product">
-                                        <!-- @error('name_category')
+                                        <input type="text" class="form-control @error("name_product") is-invalid @enderror" name="name_product">
+                                        @error('name_product')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
-                                        @enderror -->
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -47,19 +47,29 @@
                                 <div class="row mb-3">
                                     <label for="inputPassword" class="col-sm-2 col-form-label">DESKRIPSI</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" style="height: 100px" name="description_product"></textarea>
+                                        <textarea class="form-control  @error("description_product") is-invalid @enderror" style="height: 100px" name="description_product"></textarea>
+                                        @error('description_product')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="inputText" class="col-sm-2 col-form-label">HARGA</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="price_product">
+                                        <input type="text" class="form-control @error("price_product") is-invalid @enderror" name="price_product">
+                                        @error('price_product')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="inputNumber" class="col-sm-2 col-form-label">UPLOAD FOTO</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" id="formFile">
+                                        <input class="form-control" type="file" id="formFile" name="image_product">
                                     </div>
                                 </div>
                                 <div class="row mb-3">

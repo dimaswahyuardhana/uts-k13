@@ -42,8 +42,9 @@ Route::get('category/{id_category}/delete', [CategoryController::class, 'destroy
 
 Route::get('/product', [ProductController::class, 'index']);
 
+//untuk add produk
 Route::get('/product/add', [ProductController::class, 'create']);
-Route::post('/product', [ProductController::class, 'store']);
+Route::POST('/product/adds', [ProductController::class, 'store']);
 
 Route::get('/cart', [CartController::class, 'index']);
 
