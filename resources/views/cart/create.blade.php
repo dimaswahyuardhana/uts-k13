@@ -13,37 +13,18 @@
     </div>
 
     <section class="section">
-        <div class="row">
-          <div class="col-lg-9">
-
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">MASUKKAN KERANJANG</h5>
-
-                <!-- General Form Elements -->
-                <form>
-                  <div class="row mb-3">
-                    <label for="inputText" class="col-sm-2 col-form-label">NAMA PRODUK</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control">
-                    </div>
-                  </div>
-                  <div class="row mb-3">
-                    <label for="inputText" class="col-sm-2 col-form-label">QTY</label>
-                    <div class="col-sm-10">
-                      <input type="number" class="form-control">
-                    </div>
-                  </div>
-                  <div class="row mb-3">
-                    <div class="col-sm-10">
-                      <button type="submit" class="btn btn-primary">MASUKKAN CART</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
+        @foreach ($product as $item)
+        <div class="card" style="width: 18rem;">
+            <img src="{{ asset('template/assets/img/card.jpg') }}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{ $item->name_product }}</h5>
+              <p class="card-text">{{ $item->description_product }}</p>
+              <p class="card-text">Harga : Rp.{{ $item->price_product }},00</p>
+              <button type="button" class="btn btn-primary">Masukkan Cart</button>
             </div>
-          </div>
         </div>
+        @endforeach
+
         <div class="row">
             <div class="col-lg-12">
 
