@@ -38,6 +38,10 @@ class CategoryController extends Controller
     {
         $validatedData = $request->validate([
             'name_category' => 'required|string|min:2|max:50',
+        ], [
+            'name_category.required' => 'Nama Kategori harus diisi',
+            'name_category.min' => 'Nama Kategori minimal diisi 2 karakter',
+            'name_category.max' => 'Nama Kategori maksimal diisi 50 karakter',
         ]);
 
         Category::create($validatedData);
@@ -78,6 +82,10 @@ class CategoryController extends Controller
     {
         $validatedData = $request->validate([
             'name_category' => 'required|min:2|max:50',
+        ], [
+            'name_category.required' => 'Nama Kategori harus diisi',
+            'name_category.min:2' => 'Nama Kategori minimal diisi 2 karakter',
+            'name_category.max:50' => 'Nama Kategori maksimal diisi 50 karakter',
         ]);
         Category::where('id_category', $id)->update($validatedData);
         return redirect('/category');
