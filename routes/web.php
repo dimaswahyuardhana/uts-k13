@@ -32,13 +32,17 @@ Route::get('/category', [CategoryController::class, 'index']);
 //untuk add category
 Route::get('/category/add', [CategoryController::class, 'create']);
 Route::post('/category', [CategoryController::class, 'store']);
+//END untuk add category
 
 //untuk edit category
 Route::get('/category/{id_category}/edit', [CategoryController::class, 'edit']);
 Route::put('/category/{id_category}', [CategoryController::class, 'update']);
+//END untuk edit category
 
 //untuk delete category
 Route::get('category/{id_category}/delete', [CategoryController::class, 'destroy']);
+//END untuk delete category
+
 
 Route::get('/product', [ProductController::class, 'index']);
 
@@ -46,7 +50,15 @@ Route::get('/product', [ProductController::class, 'index']);
 Route::get('/product/add', [ProductController::class, 'create']);
 Route::POST('/product/adds', [ProductController::class, 'store']);
 
+
 Route::get('/cart', [CartController::class, 'index']);
+
+
+//untuk add produk ke cart
+Route::get('/cart/add/', [CartController::class, 'index']);
+Route::post('/cart/add/{id}', [CartController::class, 'store']);
+//END untuk add produk ke cart
+
 
 Route::get('/transaction', [TransactionController::class, 'index']);
 
