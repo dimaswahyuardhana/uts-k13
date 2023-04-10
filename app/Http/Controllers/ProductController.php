@@ -46,8 +46,16 @@ class ProductController extends Controller
             'id_category' => 'required',
             'description_product' => 'required',
             'price_product' => 'required',
-            'image_product' => 'required|image',
+            'image_product' => 'required|image'
+        ], [
+            'name_product.required' => 'Nama Produk harus diisi',
+            'id_category.required' => 'Pilih salah Kategori',
+            'description_product.required' => 'Deskripsi Produk harus diisi',
+            'price_product.required' => 'Harga Produk harus diisi',
+            'image_product.required' => 'Gambar Produk harus diisi',
+            'image_product.image' => 'File Gambar harus dalam bentuk extension image'
         ]);
+
         $validatedData['image_product'] = $request->file('image_product')->storeAs('photo_product',$validatedData['name_product'].'.jpg');
         // $validatedData['gambar_produk'] = $request->file('gambar_produk')->storeAs('fotoProduk',$validatedData['name_product'].'.jpg');
         // Product::create([

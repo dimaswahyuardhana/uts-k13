@@ -37,11 +37,11 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name_category' => 'required|string|min:2|max:50',
+            'name_category' => 'required|string|min:2|max:50'
         ], [
             'name_category.required' => 'Nama Kategori harus diisi',
             'name_category.min' => 'Nama Kategori minimal diisi 2 karakter',
-            'name_category.max' => 'Nama Kategori maksimal diisi 50 karakter',
+            'name_category.max' => 'Nama Kategori maksimal diisi 50 karakter'
         ]);
 
         Category::create($validatedData);
