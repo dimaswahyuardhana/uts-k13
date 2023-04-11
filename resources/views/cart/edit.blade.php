@@ -20,16 +20,16 @@
                             <h5 class="card-title">EDIT DATA CATEGORY</h5>
 
                             <!-- General Form Elements -->
-                            <form method="POST" action="/category/{{ $category->id_category }}">
-                                @method('put')
+                            <form action="/cart/{{ $cart->id_cart }}" method="POST">
+                                @method("PUT")
                                 @csrf
                                 <div class="row mb-3">
-                                    <label for="name_category" class="col-sm-2 col-form-label">NAMA CATEGORY</label>
+                                    <label for="qty" class="col-sm-2 col-form-label">Kuantitas</label>
                                     <div class="col-sm-10">
                                         <input type="text"
-                                            class="form-control @error('name_category') is-invalid @enderror"
-                                            id="name_category" name="name_category" value="{{ $category->name_category }}">
-                                        @error('name_category')
+                                            class="form-control @error('qty') is-invalid @enderror"
+                                            id="qty" name="qty" value="{{ $category->qty }}">
+                                        @error('qty')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>

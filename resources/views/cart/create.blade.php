@@ -64,9 +64,9 @@
                                             <td>{{ $item->name_product }}</td>
                                             <td>{{ $item->qty }}</td>
                                             <td>{{ $item->total }}</td>
-                                            <td><a href="/cart/{{ $item->id_product }}/edit"
+                                            <td><a href="/cart/{{ $item->id_cart }}/edit"
                                                     class="btn btn-xs btn-warning">Edit</a>
-                                                <a href="/cart/{{ $item->id_product }}/delete"
+                                                <a href="/cart/{{ $item->id_cart }}/delete"
                                                     class="btn btn-xs btn-danger"
                                                     onclick="return confirm('Are u Sure?');">Delete</a>
                                             </td>
