@@ -17,12 +17,12 @@ class CartController extends Controller
     public function index()
     {
         $product = Product::all();
-        $carts = DB::table("carts")
-                    ->select("*")
-                    ->join("products","products.id_product", "=","carts.id_product")
-                    ->get();
-        $no=1;
-        return view('cart.create', compact('product', 'carts','no'));
+        $carts = DB::table('carts')
+            ->select('*')
+            ->join('products', 'products.id_product', '=', 'carts.id_product')
+            ->get();
+        $no = 1;
+        return view('cart.create', compact('product', 'carts', 'no'));
     }
 
     /**
@@ -43,23 +43,23 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $id_product=$request->id_product;
-        $qty=$request->qty;
-        $price=$request->price_product;
-        $total=$qty*$price;
+        $id_product = $request->id_product;
+        $qty = $request->qty;
+        $price = $request->price_product;
+        $total = $qty * $price;
 
-        $checkData= Cart::select('*')
-                        ->where('id_product',$id_product)
-                        ->count();
-        $data= Cart::select('*')
-                    ->where('id_product',$id_product)
-                    ->get();
-        if($checkData == 0){
-            DB::insert('insert into carts(id_product,qty,total) values(?,?,?)',[$id_product,$qty,$total]);
-        }else{
-            DB::update('update carts set qty='.$data[0]->qty+$qty.' ,total='.$data[0]->total+$total.' where id_product='.$id_product);
+        $checkData = Cart::select('*')
+            ->where('id_product', $id_product)
+            ->count();
+        $data = Cart::select('*')
+            ->where('id_product', $id_product)
+            ->get();
+        if ($checkData == 0) {
+            DB::insert('insert into carts(id_product,qty,total) values(?,?,?)', [$id_product, $qty, $total]);
+        } else {
+            DB::update('update carts set qty=' . $data[0]->qty + $qty . ' ,total=' . $data[0]->total + $total . ' where id_product=' . $id_product);
         }
-        return redirect("/cart/add");
+        return redirect('/cart/add');
     }
 
     /**
@@ -81,10 +81,17 @@ class CartController extends Controller
      */
     public function edit(Cart $id_cart)
     {
-        $data['products'] = Product::all();
-        $data['cart'] = Cart::find($id_cart);
+        $data = DB::table('carts')
+            ->join('products', 'products.id_product', '=', 'carts.id_product')
+            ->select('*')
+            ->where('id_cart', $id_cart)
+            ->get();
+        return view('cart.create', compact('data'));
 
-        return view('cart.edit', $data);
+        // $data['products'] = Product::all();
+        // $data['cart'] = Cart::find($id_cart);
+
+        // return view('cart.edit', $data);
     }
 
     /**
@@ -94,10 +101,11 @@ class CartController extends Controller
      * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function update($id_cart , Request $request){
+    public function update($id_cart, Request $request)
+    {
         $find = Cart::find($id_cart);
         $find->update($request->except(['_token']));
-        return redirect("/cart");
+        return redirect('/cart');
     }
 
     /**
