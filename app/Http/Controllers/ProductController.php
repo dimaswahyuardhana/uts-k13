@@ -118,6 +118,12 @@ class ProductController extends Controller
             'price_product.numeric' => 'Harga Produk harus berupa angka',
             'image_product.required' => 'Gambar Produk harus diisi'
         ]);
+        $checkName= Product::select('*')
+                            ->where('id_product',$id_product)
+                            ->get();
+        $path = 'storage/'.$checkName[0]->image_product;
+        unlink($path);
+        $validated['image_product']= $request->file('image_product')->storeAs('photo_product',$validated['name_product'].'.jpg');
 
         Product::where('id_product', $id_product)->update($validated);
         return redirect('/product');
@@ -131,6 +137,11 @@ class ProductController extends Controller
      */
     public function destroy($id_product)
     {
+        $checkName= Product::select('*')
+                            ->where('id_product',$id_product)
+                            ->get();
+        $path = 'storage/'.$checkName[0]->image_product;
+        unlink($path);
         Product::destroy($id_product);
         return redirect('/product');
     }

@@ -20,7 +20,7 @@
                             <h5 class="card-title">EDIT DATA CATEGORY</h5>
 
                             <!-- General Form Elements -->
-                            <form action="/product/{{ $product->id_product }}" method="POST">
+                            <form action="/product/{{ $product->id_product }}" method="POST" enctype="multipart/form-data">
                                 @method('PUT')
                                 @csrf
                                 <div class="row mb-3">
