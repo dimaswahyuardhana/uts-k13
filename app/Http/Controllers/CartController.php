@@ -79,9 +79,12 @@ class CartController extends Controller
      * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cart $cart)
+    public function edit(Cart $id_cart)
     {
-        //
+        $data['products'] = Product::all();
+        $data['cart'] = Cart::find($id_cart);
+
+        return view('cart.edit', $data);
     }
 
     /**
@@ -91,9 +94,10 @@ class CartController extends Controller
      * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cart $cart)
-    {
-        //
+    public function update($id_cart , Request $request){
+        $find = Cart::find($id_cart);
+        $find->update($request->except(['_token']));
+        return redirect("/cart");
     }
 
     /**

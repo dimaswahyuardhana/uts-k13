@@ -56,13 +56,23 @@ Route::put('/product/{id_product}', [ProductController::class, 'update']);
 
 //untuk delete produk
 Route::get('/product/{id_product}/delete', [ProductController::class, 'destroy']);
-Route::get('/cart', [CartController::class, 'index']);
 
+
+Route::get('/cart', [CartController::class, 'index']);
 
 //untuk add produk ke cart
 Route::get('/cart/add/', [CartController::class, 'index']);
 Route::post('/cart/add/{id}', [CartController::class, 'store']);
 //END untuk add produk ke cart
+
+//untuk edit cart
+Route::get('/cart/{id_cart}/edit', [CartController::class, 'edit']);
+Route::put('/cart/{id_cart}', [CartController::class, 'update']);
+//END untuk edit cart
+
+//untuk delete cart
+Route::get('cart/{id_cart}/delete', [CartController::class, 'destroy']);
+//END untuk delete cart
 
 
 Route::get('/transaction', [TransactionController::class, 'index']);

@@ -25,8 +25,10 @@
                                 <p class="card-text">Harga : Rp.{{ $item->price_product }},00</p>
                                 <div class="form-group mb-3">
                                     <label for="">Qty</label>
-                                    <input type="number" class="form-control" name="id_product" value={{ $item->id_product }} hidden>
-                                    <input type="number" class="form-control" name="price_product" value={{ $item->price_product }} hidden>
+                                    <input type="number" class="form-control" name="id_product"
+                                        value={{ $item->id_product }} hidden>
+                                    <input type="number" class="form-control" name="price_product"
+                                        value={{ $item->price_product }} hidden>
                                     <input type="number" class="form-control" name="qty" min=1 value=1>
                                 </div>
                                 {{-- <a href="/cart/add/{{ $item->id_product }}">klik disini</a> --}}
@@ -37,42 +39,48 @@
                 @endforeach
             </div>
 
-                <div class="row">
-                    <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-12">
 
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">KERANJANG</h5>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">KERANJANG</h5>
 
-                                <!-- Default Table -->
-                                <table class="table">
-                                    <thead>
+                            <!-- Default Table -->
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">NO</th>
+                                        <th scope="col">NAMA PRODUK</th>
+                                        <th scope="col">QTY</th>
+                                        <th scope="col">SUB TOTAL</th>
+                                        <th scope="col">AKSI</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($carts as $item)
                                         <tr>
-                                            <th scope="col">NO</th>
-                                            <th scope="col">NAMA PRODUK</th>
-                                            <th scope="col">QTY</th>
-                                            <th scope="col">SUB TOTAL</th>
-                                            <th scope="col">AKSI</th>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $item->name_product }}</td>
+                                            <td>{{ $item->qty }}</td>
+                                            <td>{{ $item->total }}</td>
+                                            <td><a href="/cart/{{ $item->id_product }}/edit"
+                                                    class="btn btn-xs btn-warning">Edit</a>
+                                                <a href="/cart/{{ $item->id_product }}/delete"
+                                                    class="btn btn-xs btn-danger"
+                                                    onclick="return confirm('Are u Sure?');">Delete</a>
+                                            </td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ( $carts as $item )
-                                            <tr>
-                                                <td>{{ $no++ }}</td>
-                                                <td>{{ $item->name_product }}</td>
-                                                <td>{{ $item->qty }}</td>
-                                                <td>{{ $item->total }}</td>
-                                            </tr>
-                                        @endforeach
+                                    @endforeach
 
-                                    </tbody>
-                                </table>
-                                <!-- End Default Table Example -->
-                            </div>
+                                </tbody>
+                            </table>
+                            <!-- End Default Table Example -->
                         </div>
-
                     </div>
+
                 </div>
+            </div>
         </section>
     </main>
 @endsection
