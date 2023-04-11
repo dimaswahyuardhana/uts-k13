@@ -46,15 +46,14 @@ class ProductController extends Controller
             'id_category' => 'required',
             'description_product' => 'required',
             'price_product' => 'required|numeric',
-            'image_product' => 'required|image'
+            'image_product' => 'required'
         ], [
             'name_product.required' => 'Nama Produk harus diisi',
             'id_category.required' => 'Pilih salah 1 Kategori',
             'description_product.required' => 'Deskripsi Produk harus diisi',
             'price_product.required' => 'Harga Produk harus diisi',
             'price_product.numeric' => 'Harga Produk harus berupa angka',
-            'image_product.required' => 'Gambar Produk harus diisi',
-            'image_product.image' => 'File Gambar harus dalam bentuk extension image'
+            'image_product.required' => 'Gambar Produk harus diisi'
         ]);
 
         $validatedData['image_product'] = $request->file('image_product')->storeAs('photo_product',$validatedData['name_product'].'.jpg');
@@ -90,9 +89,10 @@ class ProductController extends Controller
      */
     public function edit($id_product)
     {
+        $data['categories'] = Category::all();
         $data['product'] = Product::find($id_product);
-        $Category = Category::all();
-        return view('product.edit', $data, $Category);
+
+        return view('product.edit', $data);
     }
 
     /**
@@ -102,24 +102,24 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_product)
     {
-        $validatedData = $request->validate([
+        $validated = $request->validate([
             'name_product' => 'required',
+            'id_category' => 'required',
             'description_product' => 'required',
-            'price_product' => 'required',
-            'id_category' => 'required'
+            'price_product' => 'required|numeric',
+            'image_product' => 'required'
+        ], [
+            'name_product.required' => 'Nama Produk harus diisi',
+            'id_category.required' => 'Pilih salah 1 Kategori',
+            'description_product.required' => 'Deskripsi Produk harus diisi',
+            'price_product.required' => 'Harga Produk harus diisi',
+            'price_product.numeric' => 'Harga Produk harus berupa angka',
+            'image_product.required' => 'Gambar Produk harus diisi'
         ]);
 
-        $update = Product::where(['id' => $id])->update([
-            'name_product' => $request->name_product,
-            'description_product' => $request->description_product,
-            'price_product' => $request->price_product,
-            'id_category' => $request->id_category
-        ]);
-
-
-        Product::where('id_product', $id)->update($validatedData);
+        Product::where('id_product', $id_product)->update($validated);
         return redirect('/product');
     }
 
@@ -131,7 +131,7 @@ class ProductController extends Controller
      */
     public function destroy($id_product)
     {
-        $delete = Product::find($id_product)->delete();
-        return redirect('produk');
+        Product::destroy($id_product);
+        return redirect('/product');
     }
 }

@@ -48,9 +48,14 @@ Route::get('/product', [ProductController::class, 'index']);
 
 //untuk add produk
 Route::get('/product/add', [ProductController::class, 'create']);
-Route::POST('/product/adds', [ProductController::class, 'store']);
+Route::post('/product', [ProductController::class, 'store']);
 
+//untuk edit produk
+Route::get('/product/{id_product}/edit', [ProductController::class, 'edit']);
+Route::put('/product/{id_product}', [ProductController::class, 'update']);
 
+//untuk delete produk
+Route::get('/product/{id_product}/delete', [ProductController::class, 'destroy']);
 Route::get('/cart', [CartController::class, 'index']);
 
 
