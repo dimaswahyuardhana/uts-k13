@@ -6,8 +6,8 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url('/cart') }}">Category</a></li>
-                    <li class="breadcrumb-item active">Edit Data Keranjang</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/cart') }}">Cart</a></li>
+                    <li class="breadcrumb-item active">Edit</li>
                 </ol>
             </nav>
         </div>
@@ -17,7 +17,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">EDIT DATA CATEGORY</h5>
+                            <h5 class="card-title">EDIT DATA CART</h5>
 
                             <!-- General Form Elements -->
                             <form action="/cart/{{ $cart->id_cart }}" method="POST">
@@ -28,7 +28,7 @@
                                     <div class="col-sm-10">
                                         <input type="text"
                                             class="form-control @error('qty') is-invalid @enderror"
-                                            id="qty" name="qty" value="{{ $category->qty }}">
+                                            id="qty" name="qty" value="{{ $cart->qty }}">
                                         @error('qty')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-sm-10">
-                                        <button type="submit" class="btn btn-primary">TAMBAH</button>
+                                        <button type="submit" class="btn btn-primary">UBAH</button>
                                     </div>
                                 </div>
 
