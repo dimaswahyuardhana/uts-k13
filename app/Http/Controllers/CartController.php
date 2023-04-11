@@ -79,14 +79,15 @@ class CartController extends Controller
      * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cart $id_cart)
+    public function edit($id_cart)
     {
-        $data = DB::table('carts')
+        $cart = DB::table('carts')
             ->join('products', 'products.id_product', '=', 'carts.id_product')
             ->select('*')
             ->where('id_cart', $id_cart)
             ->get();
-        return view('cart.create', compact('data'));
+            //dd($cart[0]->id_cart);
+        return view('cart.edit', compact('cart'));
 
         // $data['products'] = Product::all();
         // $data['cart'] = Cart::find($id_cart);
@@ -103,8 +104,13 @@ class CartController extends Controller
      */
     public function update($id_cart, Request $request)
     {
-        $find = Cart::find($id_cart);
-        $find->update($request->except(['_token']));
+        $cart = DB::table('carts')
+            ->join('products', 'products.id_product', '=', 'carts.id_product')
+            ->select('*')
+            ->where('id_cart', $id_cart)
+            ->get();
+        //dd($find,$cart[0]->price_product);
+        DB::update('update carts set qty='.$request->qty.',total='.$request->qty*$cart[0]->price_product.' where id_cart = ?',[$id_cart]);
         return redirect('/cart');
     }
 

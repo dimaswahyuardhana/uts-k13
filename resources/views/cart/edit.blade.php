@@ -20,7 +20,7 @@
                             <h5 class="card-title">EDIT DATA CART</h5>
 
                             <!-- General Form Elements -->
-                            <form action="/cart/{{ $cart->id_cart }}" method="POST">
+                            <form action="/cart/{{ $cart[0]->id_cart }}" method="POST">
                                 @method("PUT")
                                 @csrf
                                 <div class="row mb-3">
@@ -28,7 +28,7 @@
                                     <div class="col-sm-10">
                                         <input type="text"
                                             class="form-control @error('qty') is-invalid @enderror"
-                                            id="qty" name="qty" value="{{ $cart->qty }}">
+                                            id="qty" name="qty" value="{{ $cart[0]->qty }}">
                                         @error('qty')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
