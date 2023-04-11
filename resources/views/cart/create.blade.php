@@ -15,7 +15,7 @@
         <section class="section">
             <div class="row row-cols-3">
                 @foreach ($product as $item)
-                    <form action="/cart/add/{{ $item->id_product }}" method="POST">
+                    <form action="/cart" method="POST">
                         @csrf
                         <div class="card col" style="width: 18rem;">
                             <img src="{{ asset('storage/' . $item->image_product) }}" class="card-img-top" alt="...">

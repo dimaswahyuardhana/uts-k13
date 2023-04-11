@@ -62,7 +62,7 @@ Route::get('/cart', [CartController::class, 'index']);
 
 //untuk add produk ke cart
 Route::get('/cart/add/', [CartController::class, 'index']);
-Route::post('/cart/add/{id}', [CartController::class, 'store']);
+Route::post('/cart', [CartController::class, 'store']);
 //END untuk add produk ke cart
 
 //untuk edit cart
