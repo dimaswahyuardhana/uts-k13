@@ -75,6 +75,11 @@
 
                                 </tbody>
                             </table>
+                            <div class="row mb-3">
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-primary">CHECKOUT</button>
+                                </div>
+                            </div>
                             <!-- End Default Table Example -->
                         </div>
                     </div>

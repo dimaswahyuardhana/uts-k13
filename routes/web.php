@@ -26,56 +26,56 @@ Route::get('/', function () {
 Route::get('/', function () {
     return view('dashboard');
 });
+Route::middleware(['auth:web'])->group(function () {
+    Route::get('/category', [CategoryController::class, 'index']);
 
-Route::get('/category', [CategoryController::class, 'index']);
+    //untuk add category
+    Route::get('/category/add', [CategoryController::class, 'create']);
+    Route::post('/category', [CategoryController::class, 'store']);
+    //END untuk add category
 
-//untuk add category
-Route::get('/category/add', [CategoryController::class, 'create']);
-Route::post('/category', [CategoryController::class, 'store']);
-//END untuk add category
+    //untuk edit category
+    Route::get('/category/{id_category}/edit', [CategoryController::class, 'edit']);
+    Route::put('/category/{id_category}', [CategoryController::class, 'update']);
+    //END untuk edit category
 
-//untuk edit category
-Route::get('/category/{id_category}/edit', [CategoryController::class, 'edit']);
-Route::put('/category/{id_category}', [CategoryController::class, 'update']);
-//END untuk edit category
-
-//untuk delete category
-Route::get('category/{id_category}/delete', [CategoryController::class, 'destroy']);
-//END untuk delete category
-
-
-Route::get('/product', [ProductController::class, 'index']);
-
-//untuk add produk
-Route::get('/product/add', [ProductController::class, 'create']);
-Route::post('/product', [ProductController::class, 'store']);
-
-//untuk edit produk
-Route::get('/product/{id_product}/edit', [ProductController::class, 'edit']);
-Route::put('/product/{id_product}', [ProductController::class, 'update']);
-
-//untuk delete produk
-Route::get('/product/{id_product}/delete', [ProductController::class, 'destroy']);
+    //untuk delete category
+    Route::get('category/{id_category}/delete', [CategoryController::class, 'destroy']);
+    //END untuk delete category
 
 
-Route::get('/cart', [CartController::class, 'index']);
+    Route::get('/product', [ProductController::class, 'index']);
 
-//untuk add produk ke cart
-Route::get('/cart/add/', [CartController::class, 'index']);
-Route::post('/cart', [CartController::class, 'store']);
-//END untuk add produk ke cart
+    //untuk add produk
+    Route::get('/product/add', [ProductController::class, 'create']);
+    Route::post('/product', [ProductController::class, 'store']);
 
-//untuk edit cart
-Route::get('/cart/{id_cart}/edit', [CartController::class, 'edit']);
-Route::put('/cart/{id_cart}', [CartController::class, 'update']);
-//END untuk edit cart
+    //untuk edit produk
+    Route::get('/product/{id_product}/edit', [ProductController::class, 'edit']);
+    Route::put('/product/{id_product}', [ProductController::class, 'update']);
 
-//untuk delete cart
-Route::get('cart/{id_cart}/delete', [CartController::class, 'destroy']);
-//END untuk delete cart
+    //untuk delete produk
+    Route::get('/product/{id_product}/delete', [ProductController::class, 'destroy']);
 
 
-Route::get('/transaction', [TransactionController::class, 'index']);
+    Route::get('/cart', [CartController::class, 'index']);
+
+    //untuk add produk ke cart
+    Route::get('/cart/add/', [CartController::class, 'index']);
+    Route::post('/cart', [CartController::class, 'store']);
+    //END untuk add produk ke cart
+
+    //untuk edit cart
+    Route::get('/cart/{id_cart}/edit', [CartController::class, 'edit']);
+    Route::put('/cart/{id_cart}', [CartController::class, 'update']);
+    //END untuk edit cart
+
+    //untuk delete cart
+    Route::get('cart/{id_cart}/delete', [CartController::class, 'destroy']);
+    //END untuk delete cart
+});
+
+    Route::get('/transaction', [TransactionController::class, 'index']);
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [AuthController::class, 'register'])->name('register');

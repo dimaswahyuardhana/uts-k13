@@ -37,7 +37,15 @@
           <span>TRANSACTION</span>
         </a>
       </li>
-
+      @auth
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('/logout') }}">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span>Logout</span>
+        </a>
+      </li>
+      @endauth
+      @guest
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('/login') }}">
           <i class="bi bi-box-arrow-in-right"></i>
@@ -51,7 +59,7 @@
           <span>Register</span>
         </a>
       </li>
-
+      @endguest
     </ul>
 
   </aside>
