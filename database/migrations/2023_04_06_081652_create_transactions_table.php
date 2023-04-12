@@ -20,13 +20,10 @@ return new class extends Migration
             $table->string('name_product');
             $table->integer('qty');
             $table->unsignedInteger('total_price');
+            $table->foreignId('id');
+            $table->foreign('id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
-
-        DB::unprepared('CREATE TRIGGER hapusCarts AFTER INSERT on transactions
-        FOR EACH ROW
-        delete from carts');
-
     }
 
     /**

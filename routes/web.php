@@ -74,6 +74,9 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('cart/{id_cart}/delete', [CartController::class, 'destroy']);
     //END untuk delete cart
 
+    //untuk memindahkan data dari cart ke transaksi
+    Route::post('/transaction/{id}', [TransactionController::class, 'store']);
+    //untuk memindahkan data dari cart ke transaksi
 
     Route::get('/transaction', [TransactionController::class, 'index']);
 });

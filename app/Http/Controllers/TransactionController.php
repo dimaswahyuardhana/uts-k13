@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
+use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
+
 
 class TransactionController extends Controller
 {
@@ -14,7 +17,12 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        return view('transaction.create');
+        $id_user = auth()->user()->id;
+        $data=Transaction::select("*")
+                        ->where("id",$id_user)
+                        ->get();
+        $no=1;
+        return view('transaction.create',compact('data','no'));
     }
 
     /**
@@ -33,9 +41,22 @@ class TransactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id_user)
     {
-        //
+        $data = Cart::select("*")
+                    ->join("products","products.id_product","=","carts.id_product")
+                    ->where("carts.id",$id_user)
+                    ->get();
+        foreach($data as $items){
+            Transaction::create([
+                'name_product'=>$items->name_product,
+                'qty'=>$items->qty,
+                'total_price'=>$items->total,
+                'id'=>$id_user
+            ]);
+        }
+        Cart::where('id','=',$id_user)->delete();
+        return redirect("/transaction");
     }
 
     /**

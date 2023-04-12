@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -99,6 +100,11 @@ class CategoryController extends Controller
      */
     public function destroy($id_category)
     {
+        $fotoProduk= Product::all();
+        foreach($fotoProduk as $foto){
+            $path='storage/'.$foto->image_product;
+            unlink($path);
+        }
         Category::destroy($id_category);
         return redirect('/category');
     }

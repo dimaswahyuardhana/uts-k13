@@ -77,7 +77,10 @@
                             </table>
                             <div class="row mb-3">
                                 <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">CHECKOUT</button>
+                                    <form action="/transaction/{{ auth()->user()->id; }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary">CHECKOUT</button>
+                                    </form>
                                 </div>
                             </div>
                             <!-- End Default Table Example -->

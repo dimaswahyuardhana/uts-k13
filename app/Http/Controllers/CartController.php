@@ -17,9 +17,11 @@ class CartController extends Controller
     public function index()
     {
         $product = Product::all();
+        $id_user = auth()->user()->id;
         $carts = DB::table('carts')
             ->select('*')
             ->join('products', 'products.id_product', '=', 'carts.id_product')
+            ->where('carts.id',$id_user)
             ->get();
         $no = 1;
         return view('cart.create', compact('product', 'carts', 'no'));
@@ -47,17 +49,19 @@ class CartController extends Controller
         $qty = $request->qty;
         $price = $request->price_product;
         $total = $qty * $price;
-
+        $id_user = auth()->user();
         $checkData = Cart::select('*')
             ->where('id_product', $id_product)
+            ->where('id',$id_user->id)
             ->count();
         $data = Cart::select('*')
             ->where('id_product', $id_product)
             ->get();
-        if ($checkData == 0) {
-            DB::insert('insert into carts(id_product,qty,total) values(?,?,?)', [$id_product, $qty, $total]);
+
+        if ($checkData == 0) {//untuk ngecek apakah ada produk yang sama
+            DB::insert('insert into carts(id_product,qty,total,id) values(?,?,?,?)', [$id_product, $qty, $total,$id_user->id]);
         } else {
-            DB::update('update carts set qty=' . $data[0]->qty + $qty . ' ,total=' . $data[0]->total + $total . ' where id_product=' . $id_product);
+            DB::update('update carts set qty=' . $data[0]->qty + $qty . ' ,total=' . $data[0]->total + $total . ' where id_product=' . $id_product .' and '.' id ='.$id_user->id);
         }
         return redirect('/cart/add');
     }

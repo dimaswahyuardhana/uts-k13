@@ -18,7 +18,7 @@
 
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Tarnsaction Table</h5>
+                <h5 class="card-title">Transaction Table</h5>
 
                 <!-- Default Table -->
                 <table class="table">
@@ -26,16 +26,21 @@
                     <tr>
                       <th scope="col">NO</th>
                       <th scope="col">NAMA PRODUK</th>
-                      <th scope="col">CATEGORY</th>
-                      <th scope="col">HARGA</th>
                       <th scope="col">QTY</th>
                       <th scope="col">TOTAL</th>
+                      <th scope="col">TANGGAL</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-
-                    </tr>
+                    @foreach ($data as $items)
+                        <tr>
+                            <td>{{ $no++ }}</td>
+                            <td>{{ $items->name_product }}</td>
+                            <td>{{ $items->qty }}</td>
+                            <td>{{ $items->total_price }}</td>
+                            <td>{{ $items->created_at->format('d F y')}} , {{ $items->created_at->addHours(7)->format('H:i:s')  }}</td>
+                        </tr>
+                    @endforeach
                   </tbody>
                 </table>
                 <!-- End Default Table Example -->
