@@ -21,7 +21,7 @@ class CartController extends Controller
         $carts = DB::table('carts')
             ->select('*')
             ->join('products', 'products.id_product', '=', 'carts.id_product')
-            ->where('carts.id',$id_user)
+            ->where('carts.id', $id_user)
             ->get();
         $no = 1;
         return view('cart.create', compact('product', 'carts', 'no'));
@@ -52,16 +52,16 @@ class CartController extends Controller
         $id_user = auth()->user();
         $checkData = Cart::select('*')
             ->where('id_product', $id_product)
-            ->where('id',$id_user->id)
+            ->where('id', $id_user->id)
             ->count();
         $data = Cart::select('*')
             ->where('id_product', $id_product)
             ->get();
 
-        if ($checkData == 0) {//untuk ngecek apakah ada produk yang sama
-            DB::insert('insert into carts(id_product,qty,total,id) values(?,?,?,?)', [$id_product, $qty, $total,$id_user->id]);
+        if ($checkData == 0) { //untuk ngecek apakah ada produk yang sama
+            DB::insert('insert into carts(id_product,qty,total,id) values(?,?,?,?)', [$id_product, $qty, $total, $id_user->id]);
         } else {
-            DB::update('update carts set qty=' . $data[0]->qty + $qty . ' ,total=' . $data[0]->total + $total . ' where id_product=' . $id_product .' and '.' id ='.$id_user->id);
+            DB::update('update carts set qty=' . $data[0]->qty + $qty . ' ,total=' . $data[0]->total + $total . ' where id_product=' . $id_product . ' and ' . ' id =' . $id_user->id);
         }
         return redirect('/cart/add');
     }
@@ -90,7 +90,7 @@ class CartController extends Controller
             ->select('*')
             ->where('id_cart', $id_cart)
             ->get();
-            //dd($cart[0]->id_cart);
+        //dd($cart[0]->id_cart);
         return view('cart.edit', compact('cart'));
 
         // $data['products'] = Product::all();
@@ -114,7 +114,7 @@ class CartController extends Controller
             ->where('id_cart', $id_cart)
             ->get();
         //dd($find,$cart[0]->price_product);
-        DB::update('update carts set qty='.$request->qty.',total='.$request->qty*$cart[0]->price_product.' where id_cart = ?',[$id_cart]);
+        DB::update('update carts set qty=' . $request->qty . ',total=' . $request->qty * $cart[0]->price_product . ' where id_cart = ?', [$id_cart]);
         return redirect('/cart');
     }
 

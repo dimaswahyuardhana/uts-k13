@@ -18,11 +18,11 @@ class TransactionController extends Controller
     public function index()
     {
         $id_user = auth()->user()->id;
-        $data=Transaction::select("*")
-                        ->where("id",$id_user)
-                        ->get();
-        $no=1;
-        return view('transaction.create',compact('data','no'));
+        $data = Transaction::select("*")
+            ->where("id", $id_user)
+            ->get();
+        $no = 1;
+        return view('transaction.create', compact('data', 'no'));
     }
 
     /**
@@ -44,18 +44,18 @@ class TransactionController extends Controller
     public function store($id_user)
     {
         $data = Cart::select("*")
-                    ->join("products","products.id_product","=","carts.id_product")
-                    ->where("carts.id",$id_user)
-                    ->get();
-        foreach($data as $items){
+            ->join("products", "products.id_product", "=", "carts.id_product")
+            ->where("carts.id", $id_user)
+            ->get();
+        foreach ($data as $items) {
             Transaction::create([
-                'name_product'=>$items->name_product,
-                'qty'=>$items->qty,
-                'total_price'=>$items->total,
-                'id'=>$id_user
+                'name_product' => $items->name_product,
+                'qty' => $items->qty,
+                'total_price' => $items->total,
+                'id' => $id_user
             ]);
         }
-        Cart::where('id','=',$id_user)->delete();
+        Cart::where('id', '=', $id_user)->delete();
         return redirect("/transaction");
     }
 

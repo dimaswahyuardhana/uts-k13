@@ -21,13 +21,12 @@
 
                             <!-- General Form Elements -->
                             <form action="/cart/{{ $cart[0]->id_cart }}" method="POST">
-                                @method("PUT")
+                                @method('PUT')
                                 @csrf
                                 <div class="row mb-3">
                                     <label for="qty" class="col-sm-2 col-form-label">Kuantitas</label>
                                     <div class="col-sm-10">
-                                        <input type="text"
-                                            class="form-control @error('qty') is-invalid @enderror"
+                                        <input type="text" class="form-control @error('qty') is-invalid @enderror"
                                             id="qty" name="qty" value="{{ $cart[0]->qty }}">
                                         @error('qty')
                                             <div class="invalid-feedback">

@@ -60,14 +60,13 @@
                                 <tbody>
                                     @foreach ($carts as $item)
                                         <tr>
-                                            <td>{{ $no++ }}</td>
+                                            <th>{{ $no++ }}.</th>
                                             <td>{{ $item->name_product }}</td>
                                             <td>{{ $item->qty }}</td>
                                             <td>{{ $item->total }}</td>
                                             <td><a href="/cart/{{ $item->id_cart }}/edit"
                                                     class="btn btn-xs btn-warning">Edit</a>
-                                                <a href="/cart/{{ $item->id_cart }}/delete"
-                                                    class="btn btn-xs btn-danger"
+                                                <a href="/cart/{{ $item->id_cart }}/delete" class="btn btn-xs btn-danger"
                                                     onclick="return confirm('Are u Sure?');">Delete</a>
                                             </td>
                                         </tr>
@@ -77,7 +76,7 @@
                             </table>
                             <div class="row mb-3">
                                 <div class="col-sm-10">
-                                    <form action="/transaction/{{ auth()->user()->id; }}" method="POST">
+                                    <form action="/transaction/{{ auth()->user()->id }}" method="POST">
                                         @csrf
                                         <button type="submit" class="btn btn-primary">CHECKOUT</button>
                                     </form>

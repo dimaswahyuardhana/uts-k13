@@ -37,9 +37,7 @@
                                     <?php $no = 1; ?>
                                     @foreach ($categories as $row)
                                         <tr>
-                                            <th>
-                                                {{ $no++ }}.
-                                            </th>
+                                            <th>{{ $no++ }}.</th>
                                             <td>{{ $row->name_category }}</td>
                                             <td>
                                                 <a href="/category/{{ $row->id_category }}/edit"

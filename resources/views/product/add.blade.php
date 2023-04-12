@@ -25,7 +25,9 @@
                                 <div class="row mb-3">
                                     <label for="name_category" class="col-sm-2 col-form-label">NAMA PRODUK</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control @error("name_product") is-invalid @enderror" name="name_product">
+                                        <input type="text"
+                                            class="form-control @error('name_product') is-invalid @enderror"
+                                            name="name_product">
                                         @error('name_product')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -47,7 +49,8 @@
                                 <div class="row mb-3">
                                     <label for="inputPassword" class="col-sm-2 col-form-label">DESKRIPSI</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control @error('description_product') is-invalid @enderror" style="height: 100px" name="description_product"></textarea>
+                                        <textarea class="form-control @error('description_product') is-invalid @enderror" style="height: 100px"
+                                            name="description_product"></textarea>
                                         @error('description_product')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -58,7 +61,9 @@
                                 <div class="row mb-3">
                                     <label for="inputText" class="col-sm-2 col-form-label">HARGA</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control @error('price_product') is-invalid @enderror" name="price_product">
+                                        <input type="text"
+                                            class="form-control @error('price_product') is-invalid @enderror"
+                                            name="price_product">
                                         @error('price_product')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

@@ -16,9 +16,9 @@ class ProductController extends Controller
     public function index()
     {
         // $data = Product::with('category')->get();
-        $data=Product::join('categories', 'categories.id_category', '=', 'products.id_category')
-                    ->select('*')
-                    ->get();
+        $data = Product::join('categories', 'categories.id_category', '=', 'products.id_category')
+            ->select('*')
+            ->get();
         return view('product.create', compact('data'));
     }
 
@@ -56,7 +56,7 @@ class ProductController extends Controller
             'image_product.required' => 'Gambar Produk harus diisi'
         ]);
 
-        $validatedData['image_product'] = $request->file('image_product')->storeAs('photo_product',$validatedData['name_product'].'.jpg');
+        $validatedData['image_product'] = $request->file('image_product')->storeAs('photo_product', $validatedData['name_product'] . '.jpg');
         // $validatedData['gambar_produk'] = $request->file('gambar_produk')->storeAs('fotoProduk',$validatedData['name_product'].'.jpg');
         // Product::create([
         //     'name_product' => $request->name_product,
@@ -118,12 +118,12 @@ class ProductController extends Controller
             'price_product.numeric' => 'Harga Produk harus berupa angka',
             'image_product.required' => 'Gambar Produk harus diisi'
         ]);
-        $checkName= Product::select('*')
-                            ->where('id_product',$id_product)
-                            ->get();
-        $path = 'storage/'.$checkName[0]->image_product;
+        $checkName = Product::select('*')
+            ->where('id_product', $id_product)
+            ->get();
+        $path = 'storage/' . $checkName[0]->image_product;
         unlink($path);
-        $validated['image_product']= $request->file('image_product')->storeAs('photo_product',$validated['name_product'].'.jpg');
+        $validated['image_product'] = $request->file('image_product')->storeAs('photo_product', $validated['name_product'] . '.jpg');
 
         Product::where('id_product', $id_product)->update($validated);
         return redirect('/product');
@@ -137,10 +137,10 @@ class ProductController extends Controller
      */
     public function destroy($id_product)
     {
-        $checkName= Product::select('*')
-                            ->where('id_product',$id_product)
-                            ->get();
-        $path = 'storage/'.$checkName[0]->image_product;
+        $checkName = Product::select('*')
+            ->where('id_product', $id_product)
+            ->get();
+        $path = 'storage/' . $checkName[0]->image_product;
         unlink($path);
 
         Product::destroy($id_product);

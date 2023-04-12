@@ -40,15 +40,14 @@
                                 <tbody>
                                     <?php $no = 1; ?>
                                     @foreach ($data as $item)
-                                    <tr>
-                                        <th>
-                                            {{ $no++ }}
-                                        </th>
+                                        <tr>
+                                            <th>{{ $no++ }}.</th>
                                             <td>{{ $item->name_product }}</td>
                                             <td>{{ $item->name_category }}</td>
                                             <td>{{ $item->description_product }}</td>
                                             <td>{{ $item->price_product }}</td>
-                                            <td><img class="rounded" src="{{ asset('storage/'.$item->image_product) }}" width = "130" height="200"></td>
+                                            <td><img class="rounded" src="{{ asset('storage/' . $item->image_product) }}"
+                                                    width="130" height="200"></td>
                                             <td>
                                                 <a href="/product/{{ $item->id_product }}/edit"
                                                     class="btn btn-xs btn-warning">Edit</a>
@@ -57,7 +56,7 @@
                                                     onclick="return confirm('Are u Sure?');">Delete</a>
                                             </td>
                                         </tr>
-                                        @endforeach
+                                    @endforeach
                                 </tbody>
                             </table>
                             <!-- End Default Table Example -->
