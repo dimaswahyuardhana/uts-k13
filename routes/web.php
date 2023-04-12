@@ -73,9 +73,10 @@ Route::middleware(['auth:web'])->group(function () {
     //untuk delete cart
     Route::get('cart/{id_cart}/delete', [CartController::class, 'destroy']);
     //END untuk delete cart
-});
+
 
     Route::get('/transaction', [TransactionController::class, 'index']);
+});
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [AuthController::class, 'register'])->name('register');

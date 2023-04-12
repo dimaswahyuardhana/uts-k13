@@ -14,7 +14,7 @@
     <h2>OUR TEAM</h2>
     <div class="row row-cols-3">
         <div class="card col" style="width: 18rem;">
-            <img src="{{ asset('template/assets/img/laki-laki-ganteng.jpg') }}" class="card-img-top" alt="...">
+            <img src="{{ asset('template/assets/img/rizaldi.jpg') }}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">RIZALDI PERMANA</h5>
                 <span class="card-text">MENTOR</span>
