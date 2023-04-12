@@ -142,6 +142,7 @@ class ProductController extends Controller
                             ->get();
         $path = 'storage/'.$checkName[0]->image_product;
         unlink($path);
+
         Product::destroy($id_product);
         return redirect('/product');
     }

@@ -100,11 +100,15 @@ class CategoryController extends Controller
      */
     public function destroy($id_category)
     {
-        $fotoProduk= Product::all();
-        foreach($fotoProduk as $foto){
-            $path='storage/'.$foto->image_product;
+        $fotoProduk = Product::select('*')
+            ->where('id_category', $id_category)
+            ->get();
+
+        foreach ($fotoProduk as $foto) {
+            $path = 'storage/' . $foto->image_product;
             unlink($path);
         }
+
         Category::destroy($id_category);
         return redirect('/category');
     }
