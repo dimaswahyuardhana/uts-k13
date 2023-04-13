@@ -50,7 +50,7 @@
                                                     width="130" height="200"></td>
                                             <td>
                                                 <a href="/product/{{ $item->id_product }}/edit"
-                                                    class="btn btn-xs btn-warning">Edit</a>
+                                                    class="btn btn-xs btn-warning mb-2">Edit</a>
                                                 <a href="/product/{{ $item->id_product }}/delete"
                                                     class="btn btn-xs btn-danger"
                                                     onclick="return confirm('Are u Sure?');">Delete</a>
