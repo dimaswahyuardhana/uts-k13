@@ -22,7 +22,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ $item->name_product }}</h5>
                                 <p class="card-text">{{ $item->description_product }}</p>
-                                <p class="card-text">Harga : Rp.{{ $item->price_product }},00</p>
+                                <p class="card-text">Harga : Rp{{ $item->price_product }},00</p>
                                 <div class="form-group mb-3">
                                     <label for="">Qty</label>
                                     <input type="number" class="form-control" name="id_product"
@@ -63,7 +63,7 @@
                                             <th>{{ $no++ }}.</th>
                                             <td>{{ $item->name_product }}</td>
                                             <td>{{ $item->qty }}</td>
-                                            <td>{{ $item->total }}</td>
+                                            <td>Rp{{ $item->total }}</td>
                                             <td><a href="/cart/{{ $item->id_cart }}/edit"
                                                     class="btn btn-xs btn-warning">Edit</a>
                                                 <a href="/cart/{{ $item->id_cart }}/delete" class="btn btn-xs btn-danger"

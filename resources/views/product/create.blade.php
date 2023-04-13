@@ -45,7 +45,7 @@
                                             <td>{{ $item->name_product }}</td>
                                             <td>{{ $item->name_category }}</td>
                                             <td>{{ $item->description_product }}</td>
-                                            <td>{{ $item->price_product }}</td>
+                                            <td>Rp{{ $item->price_product }},00</td>
                                             <td><img class="rounded" src="{{ asset('storage/' . $item->image_product) }}"
                                                     width="130" height="200"></td>
                                             <td>

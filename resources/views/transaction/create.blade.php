@@ -37,7 +37,7 @@
                                             <th>{{ $no++ }}.</th>
                                             <td>{{ $items->name_product }}</td>
                                             <td>{{ $items->qty }}</td>
-                                            <td>{{ $items->total_price }}</td>
+                                            <td>Rp{{ $items->total_price }},00</td>
                                             <td>{{ $items->created_at->format('d F y') }} ,
                                                 {{ $items->created_at->addHours(7)->format('H:i:s') }}</td>
                                         </tr>
