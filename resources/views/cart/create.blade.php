@@ -63,7 +63,7 @@
                                             <th>{{ $no++ }}.</th>
                                             <td>{{ $item->name_product }}</td>
                                             <td>{{ $item->qty }}</td>
-                                            <td>Rp{{ $item->total }}</td>
+                                            <td>Rp{{ $item->total }},00</td>
                                             <td><a href="/cart/{{ $item->id_cart }}/edit"
                                                     class="btn btn-xs btn-warning">Edit</a>
                                                 <a href="/cart/{{ $item->id_cart }}/delete" class="btn btn-xs btn-danger"
