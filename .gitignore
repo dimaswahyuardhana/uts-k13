@@ -13,3 +13,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
+# Menambahkan folder public/storage ke dalam repo
+!public/storage
