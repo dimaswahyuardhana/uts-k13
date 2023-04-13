@@ -24,7 +24,7 @@
                                 <p class="card-text">{{ $item->description_product }}</p>
                                 <p class="card-text">Harga : Rp{{ $item->price_product }},00</p>
                                 <div class="form-group mb-3">
-                                    <label for="">Qty</label>
+                                    <label class="qty mb-1">Kuantitas : </label>
                                     <input type="number" class="form-control" name="id_product"
                                         value={{ $item->id_product }} hidden>
                                     <input type="number" class="form-control" name="price_product"
@@ -52,7 +52,7 @@
                                     <tr>
                                         <th scope="col">NO</th>
                                         <th scope="col">NAMA PRODUK</th>
-                                        <th scope="col">QTY</th>
+                                        <th scope="col">KUANTITAS</th>
                                         <th scope="col">SUB TOTAL</th>
                                         <th scope="col">AKSI</th>
                                     </tr>

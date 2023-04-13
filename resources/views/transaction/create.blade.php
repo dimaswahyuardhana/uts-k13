@@ -26,7 +26,7 @@
                                     <tr>
                                         <th scope="col">NO</th>
                                         <th scope="col">NAMA PRODUK</th>
-                                        <th scope="col">QTY</th>
+                                        <th scope="col">KUANTITAS</th>
                                         <th scope="col">TOTAL</th>
                                         <th scope="col">TANGGAL</th>
                                     </tr>
@@ -38,7 +38,7 @@
                                             <td>{{ $items->name_product }}</td>
                                             <td>{{ $items->qty }}</td>
                                             <td>Rp{{ $items->total_price }},00</td>
-                                            <td>{{ $items->created_at->format('d F y') }} ,
+                                            <td>{{ $items->created_at->format('d F Y') }} ,
                                                 {{ $items->created_at->addHours(7)->format('H:i:s') }}</td>
                                         </tr>
                                     @endforeach
